@@ -1,8 +1,8 @@
 import { Palette } from '@/styles/globals'
 import styled from '@emotion/styled'
 
-export const header = styled.header`
-  width: 1200px;
+export const Header = styled.header`
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

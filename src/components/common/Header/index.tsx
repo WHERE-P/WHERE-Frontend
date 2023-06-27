@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 const Header = () => {
   return (
-    <S.header>
+    <S.Header>
       <S.Wrapper>
         <Link href="/" passHref>
           <S.LogoWrapper>
@@ -29,7 +29,7 @@ const Header = () => {
           로그아웃
         </S.LogoutWrapper>
       </S.Wrapper>
-    </S.header>
+    </S.Header>
   )
 }
 

@@ -7,4 +7,9 @@ export const Layer = styled.div`
   box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.04);
   border-radius: 16px;
   background-color: ${Palette.BACKGROUND_CARD};
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 0;
+  }
 `

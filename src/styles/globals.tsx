@@ -31,6 +31,7 @@ const style = css`
     padding: 0;
     border: 0;
     box-sizing: border-box;
+    font-family: SUIT;
   }
   input:focus,
   select:focus,

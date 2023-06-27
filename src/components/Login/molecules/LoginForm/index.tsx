@@ -1,13 +1,31 @@
 import * as S from './style'
-import { useForm } from 'react-hook-form'
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form'
 import LoginInput from '../../atoms/LoginInput'
 import Button from '../../atoms/Button'
 import { LoginForm } from '@/types/components/Login'
 import { isNotNull } from '@/utils/isNotNull'
 import { RegexsData } from '@/asset/data/RegexsData'
+import { toast } from 'react-toastify'
+import { useRouter } from 'next/router'
+import { login } from '@/api/user'
 
 const LoginForm = () => {
-  const { register, watch } = useForm<LoginForm>()
+  const router = useRouter()
+  const { register, watch, handleSubmit } = useForm<LoginForm>()
+
+  const onSubmit: SubmitHandler<LoginForm> = async (e) => {
+    console.log('success')
+
+    if (await login(e.email, e.password)) {
+      router.push('/')
+    }
+  }
+  const onError: SubmitErrorHandler<LoginForm> = (e) => {
+    console.log('error')
+    console.log(e)
+
+    // toast.error(e.email?.message || e.password?.message)
+  }
 
   return (
     <S.Wrapper>
@@ -26,10 +44,6 @@ const LoginForm = () => {
         <LoginInput
           register={register('password', {
             required: 'Enter Your Password!',
-            pattern: {
-              value: RegexsData.PASSWORD,
-              message: '영문,숫자,특수문자 포함 8~20자로 입력해주세요.',
-            },
           })}
           type="password"
           placeholder="Enter Your Password."
@@ -37,7 +51,12 @@ const LoginForm = () => {
           isValue={isNotNull(watch('password'))}
         />
       </S.InputsWrapper>
-      <Button text={'로그인'} type="submit" />
+      <Button
+        text={'로그인'}
+        type="submit"
+        onClick={handleSubmit(onSubmit, onError)}
+        // onClick={() => console.log('asd')}
+      />
     </S.Wrapper>
   )
 }

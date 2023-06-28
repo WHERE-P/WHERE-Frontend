@@ -14,17 +14,12 @@ const LoginForm = () => {
   const { register, watch, handleSubmit } = useForm<LoginForm>()
 
   const onSubmit: SubmitHandler<LoginForm> = async (e) => {
-    console.log('success')
-
     if (await login(e.email, e.password)) {
       router.push('/')
     }
   }
   const onError: SubmitErrorHandler<LoginForm> = (e) => {
-    console.log('error')
-    console.log(e)
-
-    // toast.error(e.email?.message || e.password?.message)
+    toast.error(e.email?.message || e.password?.message)
   }
 
   return (
@@ -55,7 +50,6 @@ const LoginForm = () => {
         text={'로그인'}
         type="submit"
         onClick={handleSubmit(onSubmit, onError)}
-        // onClick={() => console.log('asd')}
       />
     </S.Wrapper>
   )

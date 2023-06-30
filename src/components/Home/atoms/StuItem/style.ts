@@ -7,6 +7,7 @@ export const Layer = styled.div`
   padding: 0 3% 0 8%;
   display: flex;
   align-items: center;
+  position: relative;
 
   :nth-of-type(n) {
     background-color: ${Palette.WHITE};
@@ -30,4 +31,5 @@ export const FilterBox = styled.div`
   display: flex;
   gap: 8px;
   width: 4.5em;
+  cursor: pointer;
 `

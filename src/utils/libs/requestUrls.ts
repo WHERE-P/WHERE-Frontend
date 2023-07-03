@@ -6,3 +6,9 @@ export const UserController = {
     return `/state/${stuNum}`
   },
 }
+
+export const StateController = {
+  getLocation() {
+    return `state/list/`
+  },
+}

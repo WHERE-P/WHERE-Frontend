@@ -1,8 +1,8 @@
-import { GetServerSidePropsContext } from 'next'
 import { apiClient } from '@/utils/libs/apiClient'
-import { toast } from 'react-toastify'
+import { StateController, UserController } from '@/utils/libs/requestUrls'
 import { setToken } from '@/utils/libs/setToken'
-import { UserController } from '@/utils/libs/requestUrls'
+import { GetServerSidePropsContext } from 'next'
+import { toast } from 'react-toastify'
 
 export const login = async (
   email: string | undefined,
@@ -40,5 +40,25 @@ export const tokenRefresh = async (
     return { newAuthorization }
   } catch (e: any) {
     console.log('tokenrefresh fail')
+  }
+}
+
+export const getStudentList = async (
+  grade?: number,
+  group?: number,
+  name?: string,
+) => {
+  try {
+    const { data } = await apiClient.get(StateController.getLocation(), {
+      params: {
+        grade: grade,
+        group: group,
+        name: name,
+      },
+    })
+    console.log(data)
+    return data
+  } catch (e) {
+    console.log(e)
   }
 }

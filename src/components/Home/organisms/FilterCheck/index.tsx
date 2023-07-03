@@ -1,7 +1,7 @@
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import FilterBox from '../../molecules/FilterBox'
 import * as S from './style'
-import { useEffect } from 'react'
 
 const FilterCheck = () => {
   const { register, reset, watch } = useForm({

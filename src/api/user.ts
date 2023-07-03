@@ -49,7 +49,7 @@ export const getStudentList = async (
   name?: string,
 ) => {
   try {
-    const { data } = await apiClient.get(StateController.getLocation(), {
+    const { data } = await apiClient.get(StateController.getLocation, {
       params: {
         grade: grade,
         group: group,
@@ -60,5 +60,16 @@ export const getStudentList = async (
     return data
   } catch (e) {
     console.log(e)
+  }
+}
+
+export const setStudentInfo = async (where: string) => {
+  try {
+    const { data } = await apiClient.post(StateController.setLocation, {
+      where: where,
+    })
+    return data
+  } catch (e) {
+    toast.error('알 수 없는 오류입니다')
   }
 }

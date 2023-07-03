@@ -7,13 +7,15 @@ export const Layer = styled.div`
   padding: 0 3% 0 8%;
   display: flex;
   align-items: center;
-  position: relative;
+  background-color: ${({ filter }: { filter: boolean }) =>
+    filter ? Palette.WHITE : Palette.BACKGROUND_BG};
 
   :nth-of-type(n) {
-    background-color: ${Palette.WHITE};
+    background-color: ${({ filter }: { filter: boolean }) =>
+      filter ? Palette.WHITE : Palette.BACKGROUND_BG};
   }
   :nth-of-type(2n) {
-    background-color: ${Palette.BACKGROUND_BG};
+    background-color: ${Palette.WHITE};
   }
 
   > h3 {

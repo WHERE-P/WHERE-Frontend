@@ -8,7 +8,6 @@ export const UserController = {
 }
 
 export const StateController = {
-  getLocation() {
-    return `state/list/`
-  },
+  getLocation: `state/list/`,
+  setLocation: 'state/',
 }

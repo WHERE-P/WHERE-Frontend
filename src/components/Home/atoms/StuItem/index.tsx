@@ -13,7 +13,7 @@ interface Props {
 const StuItem = ({ stuNum, name, where, filter = false }: Props) => {
   const [isFilterCheck, setFilterCheck] = useState<boolean>(false)
   return (
-    <S.Layer>
+    <S.Layer filter={filter}>
       <h3>{stuNum}</h3>
       <h3>{name}</h3>
       <h3>{where}</h3>

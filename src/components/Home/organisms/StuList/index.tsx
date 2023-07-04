@@ -4,6 +4,8 @@ import * as S from './style'
 import { apiClient } from '@/utils/libs/apiClient'
 import { getStudentList } from '@/api/user'
 import dummyData from './dummyData'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { isFetch } from '@/recoilAtoms'
 
 interface StuListType {
   user: {
@@ -17,13 +19,18 @@ interface StuListType {
 
 const StuList = () => {
   const [list, setList] = useState<StuListType[]>()
+  const [fetch, setFetch] = useRecoilState(isFetch)
 
   useEffect(() => {
-    // ;(async () => {
-    //   setList(await getStudentList())
-    // })()
-    setList(dummyData)
-  }, [])
+    if (fetch) {
+      console.log('된다 시발')
+      // ;(async () => {
+      //   setList(await getStudentList())
+      // })()
+      setList(dummyData)
+      setFetch(false)
+    }
+  }, [fetch, setFetch])
 
   const stuNum = (item: StuListType) => {
     return (

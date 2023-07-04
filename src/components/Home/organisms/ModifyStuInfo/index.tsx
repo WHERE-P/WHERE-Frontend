@@ -2,6 +2,9 @@ import { ModalOverlay } from '@/components/common/Modal/style'
 import * as S from './style'
 import StateDropDown from '../../molecules/StateDropDown'
 import { Dispatch, SetStateAction, useState } from 'react'
+import { setStudentInfo } from '@/api/user'
+import { useSetRecoilState } from 'recoil'
+import { isFetch } from '@/recoilAtoms'
 
 interface Props {
   isClick: boolean
@@ -14,6 +17,12 @@ interface Props {
 const ModifyStuInfo = ({ isClick, setClick, name, stuNum, where }: Props) => {
   const [state, setState] = useState(where)
   const [isDropDown, setDropDown] = useState(false)
+  const setFetch = useSetRecoilState(isFetch)
+
+  const onSubmit = async () => {
+    const isOk = await setStudentInfo(state)
+    if (isOk) setFetch(true)
+  }
 
   return (
     <ModalOverlay
@@ -58,7 +67,9 @@ const ModifyStuInfo = ({ isClick, setClick, name, stuNum, where }: Props) => {
           <S.ModalButton isSubmit={false} onClick={() => setClick(false)}>
             취소
           </S.ModalButton>
-          <S.ModalButton isSubmit>변경</S.ModalButton>
+          <S.ModalButton isSubmit onClick={onSubmit}>
+            변경
+          </S.ModalButton>
         </S.BotWrapper>
       </S.Layer>
     </ModalOverlay>

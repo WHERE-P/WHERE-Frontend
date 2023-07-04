@@ -23,11 +23,9 @@ const StuList = () => {
 
   useEffect(() => {
     if (fetch) {
-      console.log('된다 시발')
-      // ;(async () => {
-      //   setList(await getStudentList())
-      // })()
-      setList(dummyData)
+      ;(async () => {
+        setList(await getStudentList())
+      })()
       setFetch(false)
     }
   }, [fetch, setFetch])

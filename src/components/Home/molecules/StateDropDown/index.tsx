@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from 'react'
 import * as S from './style'
+import { stateData } from '@/asset/data/StateData'
 
 interface Props {
   state: string
@@ -7,8 +8,6 @@ interface Props {
   isDropDown: boolean
   setDropDown: Dispatch<SetStateAction<boolean>>
 }
-
-const stateData = ['외출', '조퇴', '결석', '기타']
 
 const StateDropDown = ({ state, setState, isDropDown, setDropDown }: Props) => {
   return (
@@ -25,8 +24,12 @@ const StateDropDown = ({ state, setState, isDropDown, setDropDown }: Props) => {
       {isDropDown && (
         <S.ItemContainer>
           {stateData.map((item, key) => (
-            <S.ItemWrapper key={key} onClick={() => setState(item)}>
-              {item}
+            <S.ItemWrapper
+              key={key}
+              onClick={() => setState(item.state)}
+              color={item.color}
+            >
+              {item.state}
             </S.ItemWrapper>
           ))}
         </S.ItemContainer>

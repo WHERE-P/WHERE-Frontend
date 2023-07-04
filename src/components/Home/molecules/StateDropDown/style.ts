@@ -39,6 +39,7 @@ export const ItemWrapper = styled.div`
   height: 40px;
   padding: 12px 16px;
   font-size: 16px;
+  color: ${({ color }: { color: string }) => color};
 
   :hover {
     background-color: ${Palette.NEUTRAL_N5};

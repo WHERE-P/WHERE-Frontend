@@ -20,7 +20,8 @@ const ModifyStuInfo = ({ isClick, setClick, name, stuNum, where }: Props) => {
   const setFetch = useSetRecoilState(isFetch)
 
   const onSubmit = async () => {
-    const isOk = await setStudentInfo(state)
+    console.log(stuNum)
+    const isOk = await setStudentInfo(state, stuNum)
     if (isOk) setFetch(true)
   }
 

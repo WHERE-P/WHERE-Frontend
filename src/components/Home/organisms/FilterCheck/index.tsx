@@ -12,9 +12,7 @@ const FilterCheck = () => {
     },
   })
 
-  useEffect(() => {
-    console.log(watch())
-  }, [watch()])
+  useEffect(() => {}, [watch()])
   return (
     <S.Layer>
       <S.TopWrapper>

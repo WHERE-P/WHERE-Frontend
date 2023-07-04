@@ -7,6 +7,7 @@ export const Layer = styled.div`
   padding: 0 3% 0 8%;
   display: flex;
   align-items: center;
+  position: relative;
   background-color: ${({ filter }: { filter: boolean }) =>
     filter ? Palette.WHITE : Palette.BACKGROUND_BG};
 
@@ -27,6 +28,11 @@ export const Layer = styled.div`
   > h3:nth-of-type(4) {
     flex: 0 0 4em;
   }
+`
+
+export const StateText = styled.h3`
+  flex: 4;
+  color: ${({ color }: { color: string }) => color};
 `
 
 export const FilterBox = styled.div`

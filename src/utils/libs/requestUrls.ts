@@ -9,5 +9,7 @@ export const UserController = {
 
 export const StateController = {
   getLocation: `state/list/`,
-  setLocation: 'state/',
+  setLocation(stuNum: string) {
+    return `state/${stuNum}`
+  },
 }

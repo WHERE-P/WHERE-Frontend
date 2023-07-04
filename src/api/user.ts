@@ -63,14 +63,16 @@ export const getStudentList = async (
   }
 }
 
-export const setStudentInfo = async (where: string) => {
+export const setStudentInfo = async (where: string, stuNum: string) => {
   try {
-    await apiClient.post(StateController.setLocation, {
+    const { data } = await apiClient.post(StateController.setLocation(stuNum), {
       where: where,
     })
+    console.log(data)
     toast.success('학생 상태를 변경했습니다.')
     return true
   } catch (e) {
+    console.log(e)
     toast.error('알 수 없는 오류입니다')
     return false
   }

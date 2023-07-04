@@ -56,7 +56,6 @@ export const getStudentList = async (
         name: !!name ? name : null,
       },
     })
-    console.log(data)
     return data
   } catch (e) {
     console.log(e)
@@ -65,15 +64,14 @@ export const getStudentList = async (
 
 export const setStudentInfo = async (where: string, stuNum: string) => {
   try {
-    const { data } = await apiClient.post(StateController.setLocation(stuNum), {
+    await apiClient.post(StateController.setLocation(stuNum), {
       where: where,
     })
-    console.log(data)
     toast.success('학생 상태를 변경했습니다.')
     return true
-  } catch (e) {
-    console.log(e)
-    toast.error('알 수 없는 오류입니다')
+  } catch (e: any) {
+    if (e.response.status === 400) toast.error('학생은 수정할 수 없습니다.')
+    if (e.response.status === 500) toast.error('알 수 없는 오류입니다')
     return false
   }
 }

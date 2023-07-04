@@ -1,11 +1,9 @@
+import { getStudentList } from '@/api/user'
+import { filterData, isFetch } from '@/recoilAtoms'
 import { useEffect, useState } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import StuItem from '../../atoms/StuItem'
 import * as S from './style'
-import { apiClient } from '@/utils/libs/apiClient'
-import { getStudentList } from '@/api/user'
-import dummyData from './dummyData'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { filterData, isFetch } from '@/recoilAtoms'
 
 interface StuListType {
   user: {
@@ -22,17 +20,17 @@ const StuList = () => {
   const [fetch, setFetch] = useRecoilState(isFetch)
   const filter = useRecoilValue(filterData)
 
+  const SetList = async () => {
+    setList(await getStudentList(filter.grade, filter.group, filter.name))
+  }
+
   useEffect(() => {
     if (fetch) {
-      ;(async () => {
-        setList(await getStudentList(filter.grade, filter.group, filter.name))
-      })()
+      SetList()
     }
   }, [fetch, setFetch])
   useEffect(() => {
-    ;(async () => {
-      setList(await getStudentList(filter.grade, filter.group, filter.name))
-    })()
+    SetList()
   }, [filter])
 
   const stuNum = (item: StuListType) => {

@@ -1,13 +1,13 @@
-import * as S from './style'
-import Image from 'next/image'
 import Logo from '@/asset/png/WhereLogo.png'
 import { LogoutIcon } from '@/asset/svg'
-import Link from 'next/link'
 import { logout } from '@/utils/libs/logout'
+import Image from 'next/image'
+import Link from 'next/link'
+import * as S from './style'
 
 const Header = () => {
   return (
-    <S.header>
+    <S.Header>
       <S.Wrapper>
         <Link href="/" passHref>
           <S.LogoWrapper>
@@ -30,7 +30,7 @@ const Header = () => {
           로그아웃
         </S.LogoutWrapper>
       </S.Wrapper>
-    </S.header>
+    </S.Header>
   )
 }
 

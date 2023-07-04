@@ -1,8 +1,8 @@
-import { GetServerSidePropsContext } from 'next'
 import { apiClient } from '@/utils/libs/apiClient'
-import { toast } from 'react-toastify'
+import { StateController, UserController } from '@/utils/libs/requestUrls'
 import { setToken } from '@/utils/libs/setToken'
-import { UserController } from '@/utils/libs/requestUrls'
+import { GetServerSidePropsContext } from 'next'
+import { toast } from 'react-toastify'
 
 export const login = async (
   email: string | undefined,
@@ -40,5 +40,38 @@ export const tokenRefresh = async (
     return { newAuthorization }
   } catch (e: any) {
     console.log('tokenrefresh fail')
+  }
+}
+
+export const getStudentList = async (
+  grade?: string,
+  group?: string,
+  name?: string,
+) => {
+  try {
+    const { data } = await apiClient.get(StateController.getLocation, {
+      params: {
+        grade: Number(grade) ? Number(grade) : null,
+        group: Number(group) ? Number(group) : null,
+        name: !!name ? name : null,
+      },
+    })
+    return data
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+export const setStudentInfo = async (where: string, stuNum: string) => {
+  try {
+    await apiClient.post(StateController.setLocation(stuNum), {
+      where: where,
+    })
+    toast.success('학생 상태를 변경했습니다.')
+    return true
+  } catch (e: any) {
+    if (e.response.status === 400) toast.error('학생은 수정할 수 없습니다.')
+    if (e.response.status === 500) toast.error('알 수 없는 오류입니다')
+    return false
   }
 }

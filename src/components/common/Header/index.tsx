@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Logo from '@/asset/png/WhereLogo.png'
 import { LogoutIcon } from '@/asset/svg'
 import Link from 'next/link'
+import { logout } from '@/utils/libs/logout'
 
 const Header = () => {
   return (
@@ -24,7 +25,7 @@ const Header = () => {
             <p>WHERE</p>
           </S.LogoWrapper>
         </Link>
-        <S.LogoutWrapper onClick={() => console.log('logout')}>
+        <S.LogoutWrapper onClick={() => logout()}>
           <LogoutIcon />
           로그아웃
         </S.LogoutWrapper>

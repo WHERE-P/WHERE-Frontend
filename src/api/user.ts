@@ -44,16 +44,16 @@ export const tokenRefresh = async (
 }
 
 export const getStudentList = async (
-  grade?: number,
-  group?: number,
+  grade?: string,
+  group?: string,
   name?: string,
 ) => {
   try {
     const { data } = await apiClient.get(StateController.getLocation, {
       params: {
-        grade: grade,
-        group: group,
-        name: name,
+        grade: Number(grade) ? Number(grade) : null,
+        group: Number(group) ? Number(group) : null,
+        name: !!name ? name : null,
       },
     })
     console.log(data)

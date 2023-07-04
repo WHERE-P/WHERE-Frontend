@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import FilterBox from '../../molecules/FilterBox'
 import * as S from './style'
+import { useSetRecoilState } from 'recoil'
+import { filterData } from '@/recoilAtoms'
 
 const FilterCheck = () => {
   const { register, reset, watch } = useForm({
@@ -12,7 +14,20 @@ const FilterCheck = () => {
     },
   })
 
-  useEffect(() => {}, [watch()])
+  const setFilterData = useSetRecoilState(filterData)
+
+  const onSubmit = () => {
+    setFilterData({
+      grade: watch('grade'),
+      group: watch('group'),
+      name: watch('name'),
+    })
+  }
+
+  useEffect(() => {
+    console.log('tlqkf')
+    onSubmit()
+  }, [watch('grade')])
   return (
     <S.Layer>
       <S.TopWrapper>
@@ -21,7 +36,7 @@ const FilterCheck = () => {
       </S.TopWrapper>
       <S.InputBox>
         <input placeholder="Enter Name" {...register('name')} />
-        <button>검색</button>
+        <button onClick={() => onSubmit()}>검색</button>
       </S.InputBox>
       <FilterBox
         title={'학년'}

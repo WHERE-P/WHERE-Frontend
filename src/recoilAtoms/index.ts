@@ -6,11 +6,11 @@ export const isFetch = atom<boolean>({
   default: true,
 })
 
-// export const filterData = atom({
-//   key: 'filterData',
-//   default: {
-//     grade: ''
-//     group: ''
-//     name
-//   }
-// })
+export const filterData = atom<{
+  grade?: string
+  group?: string
+  name?: string
+}>({
+  key: 'filterData',
+  default: {},
+})

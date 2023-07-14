@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import FilterBox from '../../molecules/FilterBox'
 import * as S from './style'
 import { useSetRecoilState } from 'recoil'
-import { filterData } from '@/recoilAtoms'
+import { filterData, isFetch } from '@/recoilAtoms'
 
 const FilterCheck = () => {
   const { register, reset, watch } = useForm({
@@ -15,6 +15,7 @@ const FilterCheck = () => {
   })
 
   const setFilterData = useSetRecoilState(filterData)
+  const setFetch = useSetRecoilState(isFetch)
 
   const onSubmit = () => {
     setFilterData({
@@ -27,12 +28,19 @@ const FilterCheck = () => {
   useEffect(() => {
     console.log('tlqkf')
     onSubmit()
-  }, [watch('grade')])
+  }, [watch('grade'), watch('group')])
   return (
     <S.Layer>
       <S.TopWrapper>
         <h4>필터</h4>
-        <h5 onClick={() => reset()}>초기화</h5>
+        <h5
+          onClick={() => {
+            reset()
+            setFetch(true)
+          }}
+        >
+          초기화
+        </h5>
       </S.TopWrapper>
       <S.InputBox>
         <input placeholder="Enter Name" {...register('name')} />

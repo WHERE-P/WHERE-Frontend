@@ -15,7 +15,7 @@ interface Props {
 }
 
 const ModifyStuInfo = ({ isClick, setClick, name, stuNum, where }: Props) => {
-  const [state, setState] = useState(where)
+  const [state, setState] = useState('ex. 외출')
   const [isDropDown, setDropDown] = useState(false)
   const setFetch = useSetRecoilState(isFetch)
 
@@ -55,7 +55,7 @@ const ModifyStuInfo = ({ isClick, setClick, name, stuNum, where }: Props) => {
               setDropDown(false)
             }}
           >
-            <h3>현재 상태:</h3>
+            <h3>변경할 상태:</h3>
             <StateDropDown
               state={state}
               setState={setState}

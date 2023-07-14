@@ -27,6 +27,7 @@ const StuList = () => {
   useEffect(() => {
     if (fetch) {
       SetList()
+      setFetch(false)
     }
   }, [fetch, setFetch])
   useEffect(() => {

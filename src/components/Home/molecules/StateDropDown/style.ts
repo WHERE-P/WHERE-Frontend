@@ -21,6 +21,10 @@ export const Header = styled.div`
   font-size: 16px;
   display: flex;
   align-items: center;
+
+  span {
+    color: ${Palette.NEUTRAL_N3};
+  }
 `
 
 export const ItemContainer = styled.div`
